@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cf798d5c-c53a-414a-be59-b241df2867ce" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cQuJTP5njG8sfRJhC67QJelz2U" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="D:/BaiduNetdiskDownload/31.会员版(2.0)-就业课(2.0)-Mybatis/mybatis/mybatis_day01/代码/mybati第一天源码/day01_eesy_01mybatis" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Program\GitWorkStation\mybatis-learning\com.day0526\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MybatisTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MybatisTest" />
+      <module name="com.day0526" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MybatisTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cf798d5c-c53a-414a-be59-b241df2867ce" name="Default Changelist" comment="" />
+      <created>1590473065856</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590473065856</updated>
+      <workItem from="1590473069021" duration="6854000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="261" y="8" key="#Project_Structure" timestamp="1590474572265">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="261" y="8" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1590474572265" />
+    <state x="476" y="218" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590475631781">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="476" y="218" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864@0.0.1536.864" timestamp="1590475631781" />
+    <state x="530" y="41" key="#com.intellij.ide.util.MemberChooser" timestamp="1590474690806">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="530" y="41" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1590474690806" />
+    <state x="499" y="131" key="FileChooserDialogImpl" timestamp="1590478689263">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="499" y="131" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1590478689263" />
+    <state width="1483" height="359" key="GridCell.Tab.0.bottom" timestamp="1590479593726">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="359" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1590479593726" />
+    <state width="1483" height="359" key="GridCell.Tab.0.center" timestamp="1590479593726">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="359" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1590479593726" />
+    <state width="1483" height="359" key="GridCell.Tab.0.left" timestamp="1590479593726">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="359" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1590479593726" />
+    <state width="1483" height="359" key="GridCell.Tab.0.right" timestamp="1590479593726">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="359" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1590479593726" />
+    <state x="154" y="0" key="SettingsEditor" timestamp="1590478569534">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="154" y="0" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1590478569534" />
+    <state x="391" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1590473070202">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="391" y="216" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1590473070202" />
+    <state x="347" y="-1" width="840" height="1034" key="search.everywhere.popup" timestamp="1590477996686">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="347" y="-1" width="840" height="1034" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1590477996686" />
+  </component>
+</project>
