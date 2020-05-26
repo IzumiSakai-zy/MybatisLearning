@@ -252,7 +252,7 @@
 
 * 三个xml与jdbc的关系
 
-![Image text](img/入门案例分析.png)
+![Image text](https://github.com/IzumiSakai-zy/mybatis-learning/blob/master/img/%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90.png)
 
 * 代理分析
 
