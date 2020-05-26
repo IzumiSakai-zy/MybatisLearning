@@ -39,11 +39,10 @@
 ### mybatis环境搭建
 
 * 在IDEA中创建一个maven项目
-
 * 在数据库中导入一张user表
-
-  ![image-20200526141849455](C:\Users\泉水姐姐超级粉丝\AppData\Roaming\Typora\typora-user-images\image-20200526141849455.png)
-
+  
+* ![Image text](img/数据库表.png)
+  
 * 设置maven打包方式`<packaging>jar</packaging>`
 
 * 导入依赖
@@ -145,7 +144,9 @@
 ****************
 
 ### mybatis入门遇见的bug
-
+* 无效的源发行版12
+  
+  * 把编译版本改成8
 * 提示说找不到IUserDao的映射
 
   * 原来是没在SqlMapConfig.xml下写
@@ -154,5 +155,105 @@
             <mapper resource="dao/IUserDao.xml"/>
     </mappers>`
 
-* 字符集不匹配
+* 提示`Unknown initial character set index '255' received from server. Initial client character`
+  
   * 改成`jdbc:mysql://localhost:3306/day0526-mybatis?useUnicode=true&amp;characterEncoding=utf8`
+
+*****************
+
+### mybatis 入门案例步骤
+
+* ```java
+  //读取配置文件
+  InputStream is= Resources.getResourceAsStream("SqlMapConfig.xml");
+  //创建工厂
+  SqlSessionFactoryBuilder builder=new SqlSessionFactoryBuilder();
+  SqlSessionFactory factory=builder.build(is);
+  //使用工厂生产对象
+  SqlSession sqlSession = factory.openSession();
+  //创建dao接口的代理对象
+  IUserDao userDao= sqlSession.getMapper(IUserDao.class);
+  //用代理对象执行方法
+  List<User> users = userDao.findAll();
+  for (User user:users) {
+      System.out.println(user);
+  }
+  //释放资源
+  is.close();
+  sqlSession.close();
+  ```
+*****************************
+
+### 基于注解的mybatis案例
+
+* 删除resource下dao包全部内容
+
+* 在IUserDao的findAll方法上添加注解
+
+  ```java
+  @Select("select * from user")
+  List<User> findAll();
+  ```
+
+* 在SqlMapConfig.xml中修改mappers内容
+
+  ```xml
+  <mappers>
+      <mapper class="dao.IUserDao"/>
+  </mappers>
+  ```
+
+* 自己的总结
+
+  * mybatis就是通过定位mapper来实现功能，没有注解是通过namespace确定那个类，id确定方法
+
+    * ```xml
+      <mapper namespace="dao.IUserDao" >
+          <select id="findAll" resultType="domain.User">
+              select * from user
+          </select>
+      </mapper>
+      ```
+  *  注解和xml都要在SqlMapConfig.xml里面定义mappers，这才是核心
+
+**************************
+
+### 入门案例中的设计模式分析
+
+* 读取文件只有两种方式靠谱
+  * 使用类加载器，但是它只能读类路径下的文件
+  
+  * 使用ServerletContext对象的getRealPath()方法
+  
+  * ```java
+    //读取配置文件
+    InputStream is= Resources.getResourceAsStream("SqlMapConfig.xml");
+    ```
+* 工厂创建使用了**构造者模式**，**builder**是构建者
+
+  * ```java
+    //创建工厂
+    SqlSessionFactoryBuilder builder=new SqlSessionFactoryBuilder();
+    SqlSessionFactory factory=builder.build(is);
+    ```
+
+* 创建IUserDao使用了**代理者模式**，可以不修改源码的基础上对已有方法增强
+
+  * ```java
+    //创建dao接口的代理对象
+    IUserDao userDao= sqlSession.getMapper(IUserDao.class);
+    ```
+
+    
+
+**************************
+
+### 入门案例原理分析
+
+* 三个xml与jdbc的关系
+
+![Image text](img/入门案例分析.png)
+
+* 代理分析
+
+![Imag text](img/代理分析.png)
