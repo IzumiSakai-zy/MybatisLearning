@@ -252,8 +252,23 @@
 
 * 三个xml与jdbc的关系
 
-![Image text](https://github.com/IzumiSakai-zy/mybatis-learning/blob/master/img/%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90.png)
+![Image text](img/入门案例分析.png)
 
 * 代理分析
 
 ![Imag text](img/代理分析.png)
+
+*******************************
+
+### mybatis实现过程
+
+* 第一步：SqlSessionFactoryBuilder对象接收SqlMapConfig.xml文件流，创建SqlSessionFactory对象
+* 第二步：SqlSessionFactory对象读取SqlMapConfig.xml中的数据库连接信息和mapper映射信息，创建出真正操作数据库的对象SqlSession
+* 第三步：SqlSession可以生成代理对象
+  * 其中涉及Connection对象
+  * 其中还涉及要执行的SQL语句
+* 第四步：把返回对象封装成结果集，返回给调用者
+
+************************
+
+### 
