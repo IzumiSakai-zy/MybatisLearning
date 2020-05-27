@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须是全类名-->
+<mapper namespace="dao.IUserDao" >
+    <!--id必须和方法名相同-->
+    <select id="findAll" resultType="domain.User">
+        select * from user
+    </select>
+
+    <insert id="saveUser" parameterType="domain.User">
+        <selectKey keyProperty="id" keyColumn="id" resultType="java.lang.Integer" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into user (username,birthday,sex,address)values (#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <update id="updateUser" parameterType="domain.User">
+        update user set username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} where id=#{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from user where id=#{id}
+    </delete>
+
+    <select id="findById" parameterType="java.lang.Integer" resultType="domain.User">
+        select * from user where id=#{id}
+    </select>
+
+    <select id="findByName" parameterType="java.lang.String" resultType="domain.User">
+        select * from user where username like #{username}
+    </select>
+</mapper>

@@ -271,4 +271,157 @@
 
 ************************
 
-### 
+### mybatis的CRUD
+
+* 基于xml配置的添加
+
+  * IUserDao接口定义`void saveUser(User user);`方法
+
+  * SqlSessionConfig.xml中之前已经配置了mapper，不用配置
+
+  * 在IUserDao.xml中配置saveUser(User user)的方法
+
+    * ```xml
+      <insert id="saveUser" parameterType="domain.User">
+          insert into user (username,birthday,sex,address)values (#{username},#{birthday},#{sex},#{address})
+      </insert>
+      ```
+    
+  * 测试方法最后一定要手动提交事务
+  
+    * ```java
+      User user=new User();
+      user.setUsername("王也");
+      user.setBirthday(new Date());
+      user.setAddress("武当");
+      user.setSex("男");
+      userDao.saveUser(user);
+      sqlSession.comit();
+      ```
+    
+   * 使用Junit测试框架**@Before  @After**简化代码如下
+  
+     * ```java
+       private InputStream is=null;
+       private SqlSessionFactoryBuilder builder=new SqlSessionFactoryBuilder();
+       private SqlSession sqlSession=null;
+       private IUserDao userDao=null;
+       
+       @Before
+       public void init() throws IOException{
+           is=Resources.getResourceAsStream("SqlMapConfig.xml");
+           sqlSession=builder.build(is).openSession();
+           userDao=sqlSession.getMapper(IUserDao.class);
+       }
+       
+       @After
+       public void destroy() throws IOException {
+           is.close();
+           sqlSession.close();
+       }
+       ```
+  
+* 基于xml的修改
+
+  * 总体和上面相同
+
+  * IUserDao中的SQL语句如下
+
+    * ```xml
+      <update id="updateUser" parameterType="domain.User">
+          update user set username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} where id=#{id}
+      </update>
+      ```
+    
+  * 逻辑是根据唯一自增长的id进行修改，但也可以自定义
+  
+* 基于xml的删除
+
+  * IUserDao中的SQL语句如下
+
+    * ```xml
+      <delete id="deleteUser" parameterType="java.lang.Integer">
+          delete from user where id=#{id}
+      </delete>
+      ```
+  
+* 基于xml的查询（查询一个）
+
+  * 这次参数和返回都要设置类型，两者都有
+
+    * ```xml
+      <select id="findById" parameterType="java.lang.Integer" resultType="domain.User">
+          select * from user where id=#{id}
+      </select>
+      ```
+  
+* 基于xml的模糊查询
+
+  * 重点是参数的形式，在传参时加入**%**模糊符号。
+
+    * ```xml
+      <select id="findByName" parameterType="java.lang.String" resultType="domain.User">
+          select * from user where username like #{username}
+      </select>
+      ```
+   * 其中参数为**%王%**
+  
+* 获取添加的key值
+
+  * ```xml
+    <insert id="saveUser" parameterType="domain.User">
+        <selectKey keyProperty="id" keyColumn="id" resultType="java.lang.Integer" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into user (username,birthday,sex,address)values (#{username},#{birthday},#{sex},#{address})
+    </insert>
+    ```
+    
+  * 其中keyProperty对应实体类的属性id，keycolum对应数据库表的列名，resulttype对应返回的类型，order表示insert前还是后
+  
+  * 打印要在commit之前，保存之后。
+  
+    * ```java
+      userDao.saveUser(user);
+      System.out.println(user.getId());
+      sqlSession.commit();
+      ```
+************************
+### mybatis中SQL参数深入理解
+
+* OGNL表达式
+  * 释义：对象图导航语言
+  * 作用：通过对象的取值方法获取数据，写法上把get给省略了
+    * 比如：user.getName() -> user.name
+  * 在mybatis中连user都可以省略，直接**name**
+  * 完整写法举例： 在TestClass类中有一个属性是private User user;现在想以这个user的username来进行模糊查询
+    * `parameterType="domain.TestClass"`
+    * select * from user where username like #{**user.username**}    user是参数类型类的一个属性，点后面是属性的属性
+    * 这个知识点可以用来做多限定模糊查询
+
+********************
+
+### mybatis中结果封装
+
+* 当实体类的属性名和数据库表的列名不匹配时
+
+  * SQL参数：因为是从实体类中获取值作为SQL的参数，因此只用根据OGNL规则修改**#{}**内参数就行
+
+  * 封装值为null
+
+    * 起别名：`select id as userId,name as userName …… from user` 把数据库表的列名改成实体类属性名
+
+    * 在mapper标签下加入映射关系
+
+      ```xml
+      <resultMap id="userMap" type="domain.User">
+          <id property="userId" column="id"></id>
+          <result property="userName" column="username"></result>
+          <result property="userBirthday" column="birthday"></result>
+          <result property="userSex" column="sex"></result>
+      </resultMap>
+      ```
+      * id值随便取
+      * 使用的时候不能用resultType, 而是用**resultMap="i上面的d值"**
+      * 这种性能低，但只用写一次
+
