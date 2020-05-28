@@ -21,11 +21,11 @@
         <selectKey keyProperty="id" keyColumn="id" resultType="java.lang.Integer" order="AFTER">
             select last_insert_id()
         </selectKey>
-        insert into user (username,birthday,sex,address)values (#{username},#{birthday},#{sex},#{address})
+        insert into user (username,birthday,sex,address)values (#{userName},#{birthday},#{sex},#{address})
     </insert>
 
     <update id="updateUser" parameterType="domain.User">
-        update user set username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} where id=#{id}
+        update user set username=#{userName},birthday=#{birthday},sex=#{sex},address=#{address} where id=#{id}
     </update>
 
     <delete id="deleteUser" parameterType="java.lang.Integer">
@@ -37,6 +37,31 @@
     </select>
 
     <select id="findByName" parameterType="java.lang.String" resultType="domain.User">
-        select * from user where username like #{username}
+        select * from user where username like #{userName}
+    </select>
+
+    <select id="findByParameterDynamic" parameterType="domain.User" resultType="domain.User">
+        <!--if 标签使用-->
+        <!--
+        select * from user where 1=1
+        <if test="userName != null">and username=#{userName}</if>
+        <if test="birthday != null">and birthday=#{birthday}</if>
+        <if test="sex != null">and sex=#{sex}</if>
+        <if test="address != null">and address=#{address}</if>
+        -->
+
+
+        <!--where标签使用-->
+        <!--
+        select * from user
+        <where>
+            <if test="userName != null">and username=#{userName}</if>
+            <if test="birthday != null">and birthday=#{birthday}</if>
+            <if test="sex != null">and sex=#{sex}</if>
+            <if test="address != null">and address=#{address}</if>
+        </where>
+        -->
+
+        
     </select>
 </mapper>

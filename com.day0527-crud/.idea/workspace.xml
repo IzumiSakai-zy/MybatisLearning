@@ -26,7 +26,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager" selected="JUnit.MybatisTest.saveUserTest">
+  <component name="RunManager" selected="JUnit.MybatisTest.findByParameterDynamic">
     <configuration name="MybatisTest.deleteUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="com.day0527-crud" />
       <option name="PACKAGE_NAME" value="" />
@@ -37,21 +37,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MybatisTest.findByIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="com.day0527-crud" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MybatisTest" />
-      <option name="METHOD_NAME" value="findByIdTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MybatisTest.findByNameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="com.day0527-crud" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MybatisTest" />
       <option name="METHOD_NAME" value="findByNameTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MybatisTest.findByParameterDynamic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.day0527-crud" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MybatisTest" />
+      <option name="METHOD_NAME" value="findByParameterDynamic" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -79,10 +79,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MybatisTest.findByParameterDynamic" />
         <item itemvalue="JUnit.MybatisTest.saveUserTest" />
-        <item itemvalue="JUnit.MybatisTest.deleteUserTest" />
         <item itemvalue="JUnit.MybatisTest.findByNameTest" />
-        <item itemvalue="JUnit.MybatisTest.findByIdTest" />
+        <item itemvalue="JUnit.MybatisTest.deleteUserTest" />
         <item itemvalue="JUnit.MybatisTest.updateUserTest" />
       </list>
     </recent_temporary>
@@ -97,7 +97,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590548271202</updated>
-      <workItem from="1590548275164" duration="9345000" />
+      <workItem from="1590548275164" duration="11182000" />
+      <workItem from="1590656037480" duration="3133000" />
     </task>
     <servers />
   </component>
@@ -105,22 +106,26 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1483" height="373" key="GridCell.Tab.0.bottom" timestamp="1590557138412">
+    <state x="530" y="41" key="#com.intellij.ide.util.MemberChooser" timestamp="1590656296746">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1483" height="373" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1590557138412" />
-    <state width="1483" height="373" key="GridCell.Tab.0.center" timestamp="1590557138411">
+    <state x="530" y="41" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1590656296746" />
+    <state width="1483" height="72" key="GridCell.Tab.0.bottom" timestamp="1590659172922">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1483" height="373" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1590557138411" />
-    <state width="1483" height="373" key="GridCell.Tab.0.left" timestamp="1590557138411">
+    <state width="1483" height="72" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1590659172922" />
+    <state width="1483" height="72" key="GridCell.Tab.0.center" timestamp="1590659172922">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1483" height="373" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1590557138411" />
-    <state width="1483" height="373" key="GridCell.Tab.0.right" timestamp="1590557138412">
+    <state width="1483" height="72" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1590659172922" />
+    <state width="1483" height="72" key="GridCell.Tab.0.left" timestamp="1590659172922">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1483" height="373" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1590557138412" />
+    <state width="1483" height="72" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1590659172922" />
+    <state width="1483" height="72" key="GridCell.Tab.0.right" timestamp="1590659172922">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="72" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1590659172922" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1590548406969">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

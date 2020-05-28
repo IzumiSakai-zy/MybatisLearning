@@ -46,7 +46,7 @@ public class MybatisTest {
     @Test
     public void saveUserTest() throws IOException {
         User user=new User();
-        user.setUsername("最后一个");
+        user.setUserName("王也");
         user.setBirthday(new Date());
         user.setAddress("武当");
         user.setSex("男");
@@ -54,24 +54,23 @@ public class MybatisTest {
         userDao.saveUser(user);
         System.out.println(user.getId());
         sqlSession.commit();
-
     }
 
     @Test
     public void updateUserTest() throws IOException {
         User user=new User();
-        user.setUsername("王也");
+        user.setUserName("王也");
         user.setBirthday(new Date());
         user.setAddress("武当");
         user.setSex("女");
-        user.setId(52);
+        user.setId(55);
         userDao.updateUser(user);
         sqlSession.commit();
     }
 
     @Test
     public void deleteUserTest() throws IOException {
-        userDao.deleteUser(53);
+        userDao.deleteUser(55);
         sqlSession.commit();
     }
 
@@ -85,6 +84,17 @@ public class MybatisTest {
         List<User> users = userDao.findByName("%王%");
         for (User user: users) {
             System.out.println(user);
+        }
+    }
+
+    @Test
+    public void findByParameterDynamic(){
+        User user=new User();
+        user.setUserName("老王");
+        user.setSex("男");
+        List<User> users = userDao.findByParameterDynamic(user);
+        for (User u:users) {
+            System.out.println(u);
         }
     }
 }

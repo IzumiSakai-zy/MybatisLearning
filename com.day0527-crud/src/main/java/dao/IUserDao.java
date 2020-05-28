@@ -11,4 +11,5 @@ public interface IUserDao {
     void deleteUser(Integer id);
     User findById(Integer id);
     List<User> findByName(String username);
+    List<User> findByParameterDynamic(User user);
 }
