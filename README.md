@@ -425,3 +425,126 @@
       * 使用的时候不能用resultType, 而是用**resultMap="i上面的d值"**
       * 这种性能低，但只用写一次
 
+****************************
+
+### SqlMapConfig.xml中的数据库连接property信息和typeAlias配置
+
+* 可以从外部引入property文件作为配置信息
+
+  * ```xml
+    <configuration>
+        <properties resource="jdbcConfig.property"></properties>
+        
+        <environments default="mysql">
+            <environment id="mysql">
+                <transactionManager type="JDBC"></transactionManager>
+                <dataSource type="POOLED">
+                    <property name="driver" value="${jdbc.driver}"/>
+                    <property name="url" value="${jdbc.url}"/>
+                    <property name="username" value="${jdbc.username}"/>
+                    <property name="password" value="${jdbc.password}"/>
+                </dataSource>
+            </environment>
+        </environments>
+    
+        <mappers>
+            <mapper resource="dao/IUserDao.xml"/>
+        </mappers>
+    </configuration>
+    ```
+    
+  * <properties>标签下的resource属性值是配置文件所在的路径
+  
+  * <property>标签中的value值为**&{配置文件中的完整键名}**
+  
+* typeAlias可以简化不用每次参数和返回类型都写全限定类名
+
+  * 在<configuration>标签下写
+
+    * ```xml
+      <typeAliases>
+      	<typeAlias type="domain.User" value="user"></typeAlias>
+      </typeAliases>
+      ```
+    * type属性是全类名(按规矩写，不能写错)，value属性是方便使用的类名(名字随便取)
+
+### mybatis中的连接池
+
+* 概念：连接池是一个队列，里面存放连接池对象。且这个队列必须保证线程安全。
+* 配置位置：SqlMapConfig.xml下的<dataSource>标签
+* <dataSource>标签的type属性
+
+  * POOLED —— 采用javax.sql.DataSource规范中的连接池，mybatis中有其实现
+
+  * UNPLLOED —— 采用传统获取连接池的方法，虽然也实现了javax.sql.DataSource接口，但是没有使用池的思想
+  * JNID —— 采用服务器的JNID实现来获取DataSource对象，不同服务器拿到的datasource对象不同
+    * 注意：仅限于web和maven的war工程使用
+    * 本次课程采用的是Tomcat服务器，用dbcp连接池
+* POOLED使用 原理
+  * 看连接池有无空间的连接可以用，有就直接取第一个来用，没有就执行下一步
+  * 看连接池总共已经创建出的连接池数量是否小于连接池数量上限，小于就创建一个出来直接使用，没有就执行下一步
+  * 从使用池子里面取最老使用最久的一个连接，删除其相关属性，用来使用。 —— 这样可以防止占用一个连接太久
+
+**************************
+
+### mybatis的事务
+
+* 实现机制：通过SqlSession对象的commit() 和rollback() 方法来实现提交和回滚
+
+*************
+### mybatis的动态SQL语句查询
+
+* 动态查询示例
+
+  * ```xml
+    <select id="findByParameterDynamic" parameterType="domain.User" resultType="domain.User">
+        select * from user where 1=1
+        <if test="userName != null">and username=#{userName}</if>
+        <if test="birthday != null">and birthday=#{birthday}</if>
+        <if test="sex != null">and sex=#{sex}</if>
+        <if test="address != null">and address=#{address}</if>
+    </select>
+    ```
+
+  * 注意事项
+
+    * 前面有一个**1=1**，是为了统一加**and**
+
+    * 涉及数据库表列名可以不区分大小写（仅仅是因为Windows系统下mysql不区分大小写，Linux下要区分）；涉及获取javaBean中的属性时严格区分大小写。
+
+* where标签使用示例
+
+  * ```xml
+    select * from user
+    <where>
+        <if test="userName != null">and username=#{userName}</if>
+        <if test="birthday != null">and birthday=#{birthday}</if>
+        <if test="sex != null">and sex=#{sex}</if>
+        <if test="address != null">and address=#{address}</if>
+    </where>
+    ```
+
+    * 就是把**1=1**去掉了，**and**照样加
+  
+* foreach标签使用案例
+
+  * ```xml
+    <select id="findUserInIds" resultMap="userMap" parameterType="queryvo">
+        <include refid="defaultUser"></include>
+        <where>
+            <if test="ids != null and ids.size()>0">
+                <foreach collection="ids" open="and id in (" close=")" item="uid" separator=",">
+                    #{uid}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    ```
+    
+  * 注意事项
+    
+    * 完全就是字符串拼接，没啥技术含量
+    * 最后SQL语句是`select * from user where id in (41,42,43)`
+    
+    
+
