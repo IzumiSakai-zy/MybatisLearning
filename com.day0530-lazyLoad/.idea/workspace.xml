@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="271f53f9-cf53-442f-a279-7af367aeb6c5" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ccZuvS7Ie90IQsu8Ntj4pUqw8B" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunManager" selected="JUnit.MybatisTest.findAll_UserTest">
+    <configuration name="MybatisTest.findAll_AccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.day0530-lazyLoad" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MybatisTest" />
+      <option name="METHOD_NAME" value="findAll_AccountTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MybatisTest.findAll_UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.day0530-lazyLoad" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MybatisTest" />
+      <option name="METHOD_NAME" value="findAll_UserTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MybatisTest.findById_AccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.day0530-lazyLoad" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MybatisTest" />
+      <option name="METHOD_NAME" value="findById_AccountTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MybatisTest.findByUId_AccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.day0530-lazyLoad" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MybatisTest" />
+      <option name="METHOD_NAME" value="findByUId_AccountTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MybatisTest.findAll_UserTest" />
+        <item itemvalue="JUnit.MybatisTest.findByUId_AccountTest" />
+        <item itemvalue="JUnit.MybatisTest.findById_AccountTest" />
+        <item itemvalue="JUnit.MybatisTest.findAll_AccountTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="271f53f9-cf53-442f-a279-7af367aeb6c5" name="Default Changelist" comment="" />
+      <created>1590830067802</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590830067802</updated>
+      <workItem from="1590830069286" duration="4556000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="211" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590830253276">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="211" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.864@0.0.1536.864" timestamp="1590830253276" />
+    <state x="436" y="121" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590830231653">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="436" y="121" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1590830231653" />
+    <state width="1483" height="32" key="GridCell.Tab.0.bottom" timestamp="1590840206112">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="32" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1590840206112" />
+    <state width="1483" height="32" key="GridCell.Tab.0.center" timestamp="1590840206112">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="32" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1590840206112" />
+    <state width="1483" height="32" key="GridCell.Tab.0.left" timestamp="1590840206112">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="32" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1590840206112" />
+    <state width="1483" height="32" key="GridCell.Tab.0.right" timestamp="1590840206112">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1483" height="32" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1590840206112" />
+    <state x="154" y="0" key="SettingsEditor" timestamp="1590830600195">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="154" y="0" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1590830600195" />
+  </component>
+</project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须是全类名-->
+<mapper namespace="dao.IUserDao" >
+
+    <resultMap id="findAllMap" type="domain.User">
+        <id property="id" column="id"/>
+        <result property="userName" column="username" />
+        <result property="birthday" column="birthday" />
+        <result property="address" column="address" />
+        <result property="sex" column="sex" />
+        <collection property="accounts" column="id" ofType="domain.Account" select="dao.IAccountDao.findByUId" />
+    </resultMap>
+    <select id="findAll"  resultMap="findAllMap">
+        select * from user
+    </select>
+
+</mapper>
