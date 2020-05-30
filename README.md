@@ -545,6 +545,129 @@
     
     * 完全就是字符串拼接，没啥技术含量
     * 最后SQL语句是`select * from user where id in (41,42,43)`
-    
-    
+**************
+### mybatis中的多表查询
 
+* 表之间的关系
+  * 一对一 —— 人与身份证号
+  * 一对多 —— 用户与订单
+  * 多对多 —— 学生与老师
+  * 特例 ：mybatis中认为多对一为一对一。比如订单与用户关系为多对一，但拿出一个订单只有一个用户，为一对一
+  
+* 通过继承的方式实现多表查询
+
+  * 首先通过**继承**的方式创建AccountUser类
+
+    * ```java
+      public class AccountUser extends Account {
+          private String userName;
+          private String address;
+      }
+      ```
+    
+  * 在接口中定义查询方法，List泛型为AccountUser
+  
+  * 配置IAccountUserDao.xml文件
+  
+    * ```xml
+      <select id="findAllAccountUser" resultType="domain.AccountUser">
+          select account.*,user.username,user.address from account account,user user where account.UID=user.id
+      </select>
+      ```
+      
+    * 注意SQL语句的写法
+    
+    * 因为Linux下要区分表名的大小写，因此最好做一次映射，区分表名大小和实体类小写如下
+    
+      ```xml
+      <resultMap id="findAllMap" type="domain.Account">
+          <id property="id" column="ID" />
+          <result property="uid" column="UID" />
+          <result property="money" column="MONEY" />
+      </resultMap>
+      ```
+  
+* 通过建立实体类间的耦合关联来实现多表查询
+
+  * 在Account类中添加**user属性**，并为user属性设置get和set方法
+
+  * 配置**resultMap**映射
+
+    ```xml
+    <resultMap id="findAccountWithUserPropertyMap" type="domain.AccountWithUserProperty">
+        <id property="id" column="ID" />
+        <result property="uid" column="UID" />
+        <result property="money" column="MONEY" />
+        <association property="user" column="UID" javaType="domain.User">
+            <id property="id" column="id" />
+            <result property="userName" column="username" />
+            <result property="sex" column="sex"/>
+            <result property="birthday" column="birthday" />
+            <result property="address" column="address" />
+        </association>
+    </resultMap>
+    ```
+
+    * <association>标签和javaType属性
+    
+  * ```xml
+    <select id="findAccountWithUserProperty" resultMap="findAccountWithUserPropertyMap">
+        select account.*,user.id,user.address from account account,user user where account.UID=user.id
+    </select>
+    ```
+  
+* 通过建设实体类联系的一对多查询
+
+  * 在User类中添加List<Account> accounts属性
+
+  * 配置resultMap
+
+    ```xml
+    <resultMap id="findByIdMap" type="domain.User">
+        <id property="id" column="id"/>
+        <result property="userName" column="username" />
+        <result property="birthday" column="birthday" />
+        <result property="address" column="address" />
+        <result property="sex" column="sex" />
+        <collection property="accounts" column="UID" ofType="domain.Account">
+            <id property="id" column="accountid" />
+            <result property="uid" column="UID" />
+            <result property="money" column="MONEY" />
+        </collection>
+    </resultMap>
+    ```
+
+    * 注：account和user两张表都有属性id，且不区分大小写，因此其中一个必须重命名做区分
+
+    * <collection>和ofType属性
+
+  * ```xml
+    <select id="findAll"  resultMap="findByIdMap">
+            select user.*,account.id as accountid,account.* from user user left outer join account account on user.id=account.UID
+    </select>
+    ```
+  
+    * 注意外连接的使用`left outer join …… on`
+  
+* 多对多查询
+
+  * 首先需要创建一张**中间表**，中间表只有两列，分别是两张表的主键
+
+  * 然后每一个实体类中都有另外一个实体类属性的引用
+
+  * 借助中间表进行两次外连接查询，逻辑如下
+
+    ![Image text](img/多对多查询.png)
+    
+  * SQL语句太长，换行回车之前都要加个**空格**，防止最后拼接错误
+  
+  * SQL写法
+  
+    * ```sql
+      select user.*,role.*,role.id=role id  
+      from user user left outer join user_role user_role  
+      on user.id=user_role.uid  
+      left outer join role role  
+      on user_role.uid=role.id
+      ```
+  * 还是使用<Collection>和ofType属性
