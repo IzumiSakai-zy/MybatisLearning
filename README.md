@@ -468,6 +468,7 @@
       ```
     * type属性是全类名(按规矩写，不能写错)，value属性是方便使用的类名(名字随便取)
 
+**************
 ### mybatis中的连接池
 
 * 概念：连接池是一个队列，里面存放连接池对象。且这个队列必须保证线程安全。
@@ -671,3 +672,71 @@
       on user_role.uid=role.id
       ```
   * 还是使用<Collection>和ofType属性
+***********************
+###  mybatis延迟加载和立即加载
+
+* 概念：
+  * 延迟加载：真正使用数据时才查询，不用时不查询。也叫按需加载（懒加载）。如：一个用户对应100个账户，先不查，用时在查。
+  * 立即加载： 不管用不用，只要一调用就马上加载。
+  
+* 一对多延迟加载的实现
+
+  * 核心逻辑 ：在需要使用时调用另外实体类的配置文件实现查询
+
+  * 第一步：dao层接口方法定义
+
+    * ```java
+      public interface IAccountDao {
+          List<Account> findAll();
+          List<Account> findByUId(Integer uId);//一定是根据UID来查询，不是根据ID查询
+      }
+      
+      public interface IUserDao {
+          List<User> findAll();
+      }
+      ```
+    * 注意 ：参数是UID不是ID；返回的是集合不是单个对象，因为一个User有多个对象
+    
+  * 第二步：xml配置实现
+  
+    * 重点 ：user查询所有方法配置
+  
+      ```xml
+      <resultMap id="findAllMap" type="domain.User">
+          <id property="id" column="id"/>
+          <result property="userName" column="username" />
+          <result property="birthday" column="birthday" />
+          <result property="address" column="address" />
+          <result property="sex" column="sex" />
+          <collection property="accounts" column="id" ofType="domain.Account" select="dao.IAccountDao.findByUId" />
+      </resultMap>
+      
+      <select id="findAll"  resultMap="findAllMap">
+          select * from user
+      </select>
+      ```
+      * <collection>标签的子标签内容不用写了
+      * column属性的内容非常重要。此时"id"指user的id，在account表中为"UID"，**作为参数**
+      * select属性内容是全限定方法名
+    
+  * 第三步 ：配置SqlMapConfig.xml中的设置
+  
+    * ```xml
+      <configuration>
+          <settings>
+              <setting name="lazyLoadingEnabled" value="true"/>//开启全局懒加载
+              <setting name="aggressiveLazyLoading" value="false"/>//关闭暴力懒加载
+          </settings>
+      </configuration>
+      ```
+  
+   * 第四步： 测试的时候不要打印Account内容，只打印user内容，就可以发现account查询还没执行。
+
+***********************
+
+### mybatis中的缓存
+
+* 概念：存放在内存中经常查询且不容改变的数据
+* 一级缓存 ：是SqlSession对象的一块区域，数据结构为Map
+  * 使用 ： mybatis底层已经实现，只有SqlSession对象调用**close()和clearCache()**方法时会清空缓存	
+* 二级缓存 ：由同一个SqlSessionFactory创建的所有SqlSession对象共享
