@@ -740,3 +740,61 @@
 * 一级缓存 ：是SqlSession对象的一块区域，数据结构为Map
   * 使用 ： mybatis底层已经实现，只有SqlSession对象调用**close()和clearCache()**方法时会清空缓存	
 * 二级缓存 ：由同一个SqlSessionFactory创建的所有SqlSession对象共享
+
+***************************
+
+### mybatis完全基于注解开发
+
+* 注 ：mybatis的机制当有注解时，相同结构路径下不能有IClass.xml配置文件，否则报错。
+
+* CURD实现
+  * 查 —— `@Select("select * from user")`
+  * 增 —— `@Insert("insert into user(username,address,birthday,sex) values(#{userName},#{address},#{birthday},#{sex})")`
+  * 改 —— `@Update("update user set username=#{userName},sex=#{sex},birthday=#{birthday},address=#{address} where id=#{id}")`
+  * 删 —— `@Delete("delete from user where id=#{id}")`
+  * 查一个 —— `@Select("select * from user where id=#{id}")`
+  
+* 配置类型示例
+
+  * ```java
+    @Select(value = "select * from user")
+    @Results(id = "userMap",value = {
+            @Result(id = true,property = "id",column = "id"),
+            @Result(property = "userName",column = "username"),
+            @Result(property = "address",column = "address"),
+            @Result(property = "sex",column = "sex")
+            @Result(property = "birthday",column = "birthday")
+    })
+    List<User> findAll();
+    ```
+    
+  * 总体配置和xml的ResultMap配置类似。
+    
+  * 主键就设置**id=true**
+  
+  * 设置id="userMap"后其他地方就可以引用不用重新写。引用方式：`@ResultMap(value={"userMap"})`
+  
+* 多表查询
+
+  * 一对一多表查询
+
+    ```java
+    @Select("select * from account")
+    @Results(id="findAllMap",value = {
+            @Result(id=true,property = "id",column = "ID"),
+            @Result(property = "uid",column = "UID"),
+            @Result(property = "money",column = "MONEY"),
+            @Result(property = "user",column = "UID",one = @One(select = "dao.IUserDao.findById",fetchType = FetchType.EAGER))
+    })
+    List<Account> findAll();
+    ```
+     * 核心逻辑和xml实现是一样的
+     * `one = @One(select="dao.IUserDao.findById",fetchType=FetchType.EAGER)`是重点。一对一采用立即加载
+    
+  * 一对多多表查询
+    
+    ```java
+    @Result(property = "accounts",column = "id",many = @Many(select = "dao.IAccountDao.findByUId",fetchType=FetchType.LAZY))
+    ```
+    
+    
